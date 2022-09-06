@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200&display=swap');
+$redColor : rgb(250, 73, 73);
+.FormCon{
+    width: 80%;
+    margin: 5vh auto ;
+    border-left: 1px solid rgb(189, 188, 188);
+    border-right: 1px solid rgb(189, 188, 188);
+    .title{
+        width: 100%;
+        border-bottom: 1px solid;
+        h2{
+            text-align:center ;
+        }
+    }
+    .FotherFormCon{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        form{
+            width: 90%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            .formCon{
+                width: 45%;
+                height: 10vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                margin: 2vh 0;
+                label{
+                    font-size: 18px;
+                    span{
+                        color: red;
+                    }
+                }
+                input{
+                    padding: 5px 0px;
+                    font-size: 18px;
+                    border-radius: 5px;
+                    border: 1px solid $redColor;
+                    
+                }
+            }
+        }
+        button{
+            width: 94%;
+            background-color: $redColor;
+            font-size: 30px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            border: 1px solid $redColor;
+            border-radius: 5px;
+            color: white;
+            transition: 0.2s;
+         
+        }
+        button:hover{
+            display: flex;
+            justify-content: center;
+            box-shadow: 1px 1px 5px black , -1px -1px 5px black;
+        }
+    }
+}
+.finelyCon{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.514);
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+    .centralCon{
+      width: 50%;
+      height: 70%;
+      background-color: rgb(255, 255, 255);
+      margin: 8% auto;
+      border-radius: 5px;
+      .CrosButton{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content:flex-end;
+        align-items: center;
+        box-shadow: 2px 2px 5px rgb(61, 61, 61);
+        button{
+            background-color: white;
+            border: 2px solid white;
+            padding: 0;
+            margin-right: 10px;
+            transition: 0.2s;
+        }
+        button:hover{
+            color: $redColor;
+        }
+      }
+      .basicCon{
+        width: 100%;
+        height: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        h1{
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            color: $redColor;
+        }
+        h2{
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: $redColor;
+        }
+        h3{
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        p{
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        button{
+            font-size: 20px;
+            background-color: white;
+            border: 2px solid $redColor;
+            border-radius: 5px ;
+            color:$redColor;
+            transition: 0.2s ;
+        }
+        button:hover{
+            background-color: $redColor;
+            color: white;
+        }
+    }
+    }
+}

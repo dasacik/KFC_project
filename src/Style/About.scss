@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Faster+One&family=Lobster&family=Lora&family=Pacifico&family=Plus+Jakarta+Sans:wght@200&family=Roboto+Condensed:wght@700&family=Work+Sans&display=swap");
+.AboutCon{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-evenly;
+    background-color: white;
+    .secondH2{
+      color: red;  
+    }
+    h3{
+        color: red;
+    }
+    p{
+      text-align: center;
+    }
+}
