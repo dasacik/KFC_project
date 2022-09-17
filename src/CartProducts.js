@@ -1,6 +1,8 @@
 import React from 'react'
 import CartPage from './CartPage'
 import { useSelector } from "react-redux";
+import { useState } from 'react';
+
 function CartProducts() {
     // Взял от redux который был отправлен от Кардов
   const idcarts = useSelector((state) => state.cartId);
@@ -31,9 +33,18 @@ function CartProducts() {
   }
   // сделал сортировку по ID
   const numAscending = [...newElements].sort((a, b) => a.id - b.id);
-  console.log(numAscending)
+  // Array для количество и цен продуктов
+  const num = []
+  const price = []
+  // Map для отправления элементов в Array
+  numAscending.map((prod)=>{
+    num.push(prod.amout)
+    price.push(prod.price)
+    return null
+  })
   return (
-    <div>{<CartPage menu={numAscending}/>}</div>
+    // отправил продуктов б-, цен и количество через пропс
+    <div>{<CartPage menu={numAscending} amountNum={num} prodPrice={price}/>}</div>
   )
 }
 

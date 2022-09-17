@@ -6,7 +6,7 @@ import App from "./App";
 import store from "./Redusers/store";
 import Layout from "./Layout";
 import CartPage from "./CartPage";
-import AmountButton from "./AmountButton";
+import CartProducts from "./CartProducts";
 function Index() {
   return (
     <>
@@ -16,7 +16,7 @@ function Index() {
           <Route path="/" element={<Layout />}>
             <Route index element={<App />}></Route>
             <Route path="CartPage" element={<CartPage />}></Route>
-            <Route path="Amount" element={<AmountButton />}></Route>
+            <Route path="CartProducts" element={<CartProducts/>}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
@@ -30,3 +30,4 @@ root.render(
     <Index />
   </Provider>
 );
+

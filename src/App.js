@@ -140,7 +140,7 @@ function App() {
         </div>
       </div>
       {/* Эьл Кнопка для страницы корзина */}
-      <div className="CartButton" onClick={()=>{navigateTo('CartPage')}} >
+      <div className="CartButton" onClick={()=>{navigateTo('CartProducts')}} >
         
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -6,35 +6,30 @@ import { addUser } from "./Redusers/User";
 function AboutUser(props) {
   // открыл useState для Form Inputs
   const [user, setUser] = useState({});
+  // State Для открытие и закритие Контейнера
   const [divTrueFalse, setDivTrueFalse] = useState(false);
   // Dispatch для отправления
   const dispatch = useDispatch();
-  // открытие array для отправления через map для счет продуктов
-  const priceProducts = [];
-  // открытие для суммы продуктов
+  // Меод для общей суммы
   const allPrice = [0];
-  // map для отправления в array
-  props.product.map((event) => {
-    priceProducts.push(event.price);
-  });
-  // for loop для общей суммы
-  for (let i = 0; i < priceProducts.length; i++) {
+  for (let i = 0; i < props.price.length; i++) {
     let a = allPrice.pop();
-    allPrice.push(priceProducts[i] + a);
+    allPrice.push(props.price[i] + a);
   }
+
   // Сделал плюс сумму продуктов с ценой доставки
-  const copyPrice = allPrice.pop();
-  const finalyPrice = copyPrice + 15000;
-  //  Submit для отправления даных клиента
+  const finalyPrice = allPrice[0] + 15000;
+
+  //  Submit для открытие контейнера даных клиента
   const handleSubmint = (event) => {
     if (finalyPrice > 15001) {
       event.preventDefault();
-      dispatch(addUser(user), setUser(""));
       setDivTrueFalse(true);
     } else {
-      alert("Добавьте в корзтну продукт");
+      alert("Добавьте в корзину продукт");
     }
   };
+
   // onChange для отпраления в statr
   const handleChange = (event) => {
     const user = event.target.name;
@@ -44,8 +39,14 @@ function AboutUser(props) {
       [user]: elements,
     }));
   };
+
   // Функция для закрития контейнера
   const handleClose = () => {
+    setDivTrueFalse(false);
+  };
+  // Функция для саказа и отправления данных клиента
+  const handleOrder = () => {
+    dispatch(addUser(user), setUser(""));
     setDivTrueFalse(false);
   };
 
@@ -177,13 +178,25 @@ function AboutUser(props) {
           </div>
           {/* Div Для текстов */}
           <div className="basicCon">
-            <h2>Ваш заказ приняли!</h2>
-            <h3>Окончательая цена вашего заказа с доставкой</h3>
-            <h1>{finalyPrice},00 UZS</h1>
-            <p>Ждите звонок от нашего оператора </p>
+            <div>
+              <h2>Ваш заказ приняли!</h2>
+            </div>
+            <div>
+              <h3>Окончательая цена вашего заказа с доставкой</h3>
+            </div>
+            <div>
+              <h1>{finalyPrice},00 UZS</h1>
+            </div>
+            <div>
+              <p>Ждите звонок от нашего оператора </p>
+            </div>
             {/* Button Для Закритие */}
-            <p>Оператор будет дать вам информацию об курера</p>
-            <button onClick={handleClose}>Понятно</button>
+            <div>
+              <p>Оператор будет дать вам информацию об курера</p>
+            </div>
+            <div>
+              <button onClick={handleOrder}>Понятно</button>
+            </div>
           </div>
         </div>
       </div>

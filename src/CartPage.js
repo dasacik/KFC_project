@@ -1,10 +1,50 @@
-import AmountButton from "./AmountButton";
 import "./Style/Cart.scss";
 import AboutUser from "./AboutUser";
-
-function CartPage() {
+import { useState } from "react";
+-function CartPage(props) {
+  // State для продуктов карзины
   const [copyMenu, setCopyMenu] = useState(props.menu);
+  // State каличество продуктов
+  const [amount, setAmount] = useState(props.amountNum);
+  // State для цену для одного количество
+  const [productsPrice, setProductsPrice] = useState(props.prodPrice);
+  // State для увелеченной цены продуктов
+  const [allPrice, setAllPrice] = useState(props.prodPrice);
+  // Метод для увеличения количество продуктов
+  const increment = (e) => {
+    const copyAmount = [...amount];
+    const a = e.target.value;
+    copyAmount.splice(a, a > 0 ? a : a + 1, copyAmount[a] + 1);
 
+    const copyPrice = [...productsPrice];
+    const copyAllPrice = [...allPrice];
+    copyAllPrice.splice(a, a > 0 ? a : a + 1, copyPrice[a] * copyAmount[a]);
+    setAllPrice(copyAllPrice);
+    setAmount(copyAmount);
+  };
+
+  // Метод для убавление количество продуктов
+  const decrement = (e) => {
+    const copyAmount = [...amount];
+    const a = e.target.value;
+    if (copyAmount[a] === 1) {
+      const copyArr = [...copyMenu];
+      copyArr.splice(a, a > 0 ? a : a + 1);
+      setCopyMenu(copyArr);
+      alert("Минимальное Количество Это : 1");
+    } else {
+      copyAmount.splice(a, a > 0 ? a : a + 1, copyAmount[a] - 1);
+      console.log(copyAmount);
+
+      const copyPrice = [...productsPrice];
+      const copyAllPrice = [...allPrice];
+      copyAllPrice.splice(a, a > 0 ? a : a + 1, copyPrice[a] * copyAmount[a]);
+      setAllPrice(copyAllPrice);
+
+      setAmount(copyAmount);
+    }
+  };
+// Метод удаления продуктов
   const handleDelete = (event) => {
     const copyArr = [...copyMenu];
     const prodIndex = event.target.value;
@@ -14,7 +54,7 @@ function CartPage() {
 
   return (
     <>
-    {/* Маленкий хедер для корзины */}
+      {/* Маленкий хедер для корзины */}
       <div className="miniNovbar">
         <div>
           <img
@@ -41,25 +81,35 @@ function CartPage() {
                   <h3>{data.menuName}</h3>
                 </div>
                 <div>
-                  <AmountButton num={data} />
+                  <button value={index} onClick={increment}>
+                    +
+                  </button>
+                  <h4>{amount[index]}</h4>
+                  <button value={index} onClick={decrement}>
+                    -
+                  </button>
                 </div>
               </div>
               <div className="priceCon">
                 <div>
-                  <h4>{data.price}</h4>
+                  <h4>{data.price * amount[index]}</h4>
                 </div>
                 <div>
-                  <button value={index} onClick={handleDelete}>Удалить</button>
+                  <button value={index} onClick={handleDelete}>
+                    Удалить
+                  </button>
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-      {/* вызываем компомент */}
-      <AboutUser product={numAscending} />
+
+      {/* вызываем компомент  */}
+
+      <AboutUser product={copyMenu} price={allPrice} menu={copyMenu} />
     </>
   );
-}
+};
 
 export default CartPage;
